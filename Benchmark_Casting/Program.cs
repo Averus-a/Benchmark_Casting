@@ -3,8 +3,6 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
-using System;
-using System.Diagnostics;
 
 public class Program
 {
@@ -48,6 +46,12 @@ public class Program
         public void Cast()
         {
             List<object> collection = _data.Where(x => x is not null).Cast<object>().ToList();
+        }
+
+        [Benchmark]
+        public void OfType()
+        {
+            _ = _data.OfType<object>().ToList();
         }
     }
 }
